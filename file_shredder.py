@@ -84,8 +84,9 @@ class FileShredderApp:
                 ]
 
                 for _ in range(35):
+                    f.seek(0)
                     for pattern in patterns:
-                        f.write(pattern)
+                        f.write(pattern * (file_size // len(pattern) + 1))
                     f.seek(0)
 
                 f.truncate()
